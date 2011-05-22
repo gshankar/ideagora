@@ -5,3 +5,12 @@
 %p Email: #{@user.email}
 %p Twitter username: #{@user.twitter}
 %p= @user.try(:bio)
+
+- if @user.projects.any?
+  %h2 My projects
+  %ol
+    - for project in @user.projects
+      %li
+        %h3= link_to project.name, project_path(project)
+        %p= truncate(project.try(:description))
+      

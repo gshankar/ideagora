@@ -1,3 +1,5 @@
 %h1= @project.name
 
+%h3= link_to @project.owner.full_name, user_path(@project.owner)
+
 = @project.try(:description)
