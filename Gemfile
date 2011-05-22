@@ -15,6 +15,7 @@ gem 'simple_form'
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'itslog'
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec-rails'
   gem 'spork'
