@@ -7,6 +7,7 @@ gem 'capistrano'
 gem 'haml'
 gem 'hirb'
 gem 'inherited_resources'
+gem 'rake', '0.8.7'
 gem 'simple_form'
 
 # Use unicorn as the web server
