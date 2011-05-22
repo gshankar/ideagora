@@ -10,12 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110522052901) do
+ActiveRecord::Schema.define(:version => 20110522053215) do
 
   create_table "camps", :force => true do |t|
     t.string   "name"
     t.string   "location"
     t.boolean  "current"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "twitter"
+    t.text     "bio"
+    t.integer  "camp_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
