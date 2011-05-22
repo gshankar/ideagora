@@ -42,6 +42,7 @@ module Ideagora
     config.generators do |g|
       g.template_engine     :haml
       g.test_framework      :rspec
+      g.fixture_replacement :machinist
       g.stylesheets         false
     end
   end
