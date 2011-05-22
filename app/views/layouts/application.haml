@@ -13,7 +13,13 @@
   %body{:id => @body_id || controller.controller_name, :class => controller.action_name }
     #wrapper
       %header#header
-        -# something will come here later
+        #user_nav
+          %p
+            - if current_user
+              Logged in as #{current_user.email}
+              = link_to "Log out", log_out_path
+            - else
+              = link_to "Sign in", sign_in_path
       #content
         = flash_helper.html_safe
         = yield
