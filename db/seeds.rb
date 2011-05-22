@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+Camp.create!(:name => 'Railscamp 9', :location => 'Lake Ainsworth, Lennox Head, NSW', :current => true)
+['Library', 'Lake View Conference Room - North', 'Lake View Conference Room - South'].each { |v| Venue.create!(:name => v, :camp => Camp.first) }
