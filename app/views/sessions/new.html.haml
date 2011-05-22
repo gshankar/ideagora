@@ -1,0 +1,5 @@
+%h1 Sign in
+
+= form_tag sessions_path do
+  %p= text_field_tag :details, nil, :placeholder => 'Enter email or twitter username'
+  %p.button= submit_tag 'Let me in'
