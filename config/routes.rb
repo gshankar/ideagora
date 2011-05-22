@@ -5,8 +5,9 @@ Ideagora::Application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
 
   resources :camps
-  resources :venues
+  resources :projects
   resources :sessions
+  resources :venues
   resources :users, :only => [:index, :show, :edit, :update]
   # The priority is based upon order of creation:
   # first created -> highest priority.

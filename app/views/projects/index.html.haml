@@ -1,0 +1,8 @@
+%h1 All projects
+
+%ul
+  - @projects.each do |project|
+    %li
+      = link_to project.name, project
+      by
+      = link_to project.owner.full_name, user_path(project.owner)
