@@ -1,0 +1,9 @@
+.bundle
+.DS_Store
+.rspec
+.sass-cache/
+capybara-*.html
+db/*.sqlite3
+log/*.log
+tmp/
+Thumbs.db
