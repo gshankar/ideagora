@@ -1,5 +1,5 @@
 Ideagora::Application.routes.draw do
-  
+
   get "welcome/index"
   get "sign_in" => "sessions#new", :as => "sign_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
@@ -7,7 +7,7 @@ Ideagora::Application.routes.draw do
   resources :camps
   resources :venues
   resources :sessions
-  resources :users
+  resources :users, :only => [:index, :show, :edit, :update]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
