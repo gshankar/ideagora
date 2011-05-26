@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  belongs_to :camp
+  has_many :attendances
+  has_many :camps, :through => :attendances
   
   has_many :projects, :dependent => :destroy
   
