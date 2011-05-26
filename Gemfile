@@ -14,6 +14,9 @@ gem 'simple_form'
 # gem 'unicorn'
 
 group :development, :test do
+  gem 'autotest'
+  gem 'autotest-growl'
+  gem 'autotest-fsevent'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'faker'
@@ -25,4 +28,5 @@ group :development, :test do
   gem 'shoulda'
   gem 'spork'
   gem 'steak'
+  gem 'fuubar'
 end
