@@ -1,13 +1,24 @@
 %h2 Edit my details
 
+- content_for :header do
+  :javascript
+    window.skills_tags_objs = #{@skills_tags_json};
+    window.interests_tags_objs = #{@interests_tags_json};
+  
+  = javascript_include_tag 'users/edit'
+
+
+
 - simple_form_for @user, :url => user_path(@user) do |f|
   = f.input :first_name
   = f.input :last_name
   = f.input :email
   = f.input :twitter
   = f.input :bio
+  = f.input :skill_list
+  = f.input :interest_list
   %p.submits
     = link_to 'Cancel', @user, :class => 'cancel'
     or
-    = f.button :submit, :label => 'Save changes'
+    = f.button :submit, :value => 'Save changes'
 

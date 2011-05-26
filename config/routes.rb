@@ -3,6 +3,7 @@ Ideagora::Application.routes.draw do
   get "welcome/index"
   get "sign_in" => "sessions#new", :as => "sign_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
+  get "my_profile" => "users#edit", :as => "my_profile"
 
   resources :camps
   resources :projects
