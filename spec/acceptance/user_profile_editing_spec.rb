@@ -14,7 +14,7 @@ describe 'A user viewing and editing their profile', :type => :request do
       visit my_profile_path
 
       #showing all our attributes in editable fields?
-      profile_attrs = %w(first_name last_name email twitter bio)
+      profile_attrs = %w(first_name last_name email bio twitter bonjour irc)
       profile_attrs.each do |attr|
         page.should have_field(attr.humanize, :with => @u.send(attr))
       end
@@ -32,8 +32,10 @@ describe 'A user viewing and editing their profile', :type => :request do
         :first_name => 'GabeNew',
         :last_name => 'HollombeNew',
         :email => 'gabenew@railscampers.com',
-        :twitter => 'gabehollombenew',
         :bio => 'New bio',
+        :twitter => 'gabehollombenew',
+        :bonjour => 'bonjournew',
+        :irc => 'ircnew',
         :skill_list => 'rspecnew, javascriptnew',
         :interest_list => 'divingnew, game-devnew'
       }
