@@ -3,13 +3,13 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.6'
 gem 'sqlite3'
 
+gem 'acts-as-taggable-on'
 gem 'capistrano'
 gem 'haml'
 gem 'hirb'
 gem 'inherited_resources'
 gem 'rake', '0.8.7'
 gem 'simple_form'
-gem 'acts-as-taggable-on'
 gem 'ruby-debug19'
 
 # Use unicorn as the web server

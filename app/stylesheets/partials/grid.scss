@@ -1,0 +1,7 @@
+/* -----------------------------------------------------------------------
+Layout: position, floats, display, width, height, margins, paddings....
+----------------------------------------------------------------------- */
+#wrapper {width:$max_width; margin:0 auto; position:relative;}
+
+#header {overflow:hidden; margin:8px 0 16px;}
+#user_nav {float:right;}

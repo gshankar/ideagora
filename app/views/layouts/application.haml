@@ -5,7 +5,7 @@
     
     %title Railscamp Ideagora
 
-    -#= stylesheet_link_tag 'ideagora'
+    = stylesheet_link_tag 'master'
     = stylesheet_link_tag 'vendor/jquery-ui-smoothness/jquery-ui-1.8.13.custom.css', :media => 'screen, projection, print'
 
     = javascript_include_tag 'vendor/jquery-1.6.1.min'
@@ -26,6 +26,7 @@
               = link_to "Log out", log_out_path
             - else
               = link_to "Sign in", sign_in_path
+        %h1 Railscamp 9
       #content
         = flash_helper.html_safe
         = yield
