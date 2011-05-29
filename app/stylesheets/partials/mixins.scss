@@ -1,0 +1,58 @@
+/* ========================
+  Layout Grid
+  960px wide, with 16 columns spanning 50px, and a 10px margin between columns.
+===========================*/
+$max_width: 960px;
+$number_of_cols: 16;
+$column: 50px;
+$gutter: 10px;
+$outer_width: $column + $gutter;
+
+// Use this mixin to set the width of n columns with a default margin-right.
+@mixin span($n, $margin_right: true) {
+  width: $column * $n + $gutter * ($n - 1);
+  @if $margin_right {
+    margin-right: $gutter; }
+  @else {
+    margin-right: 0; }
+}
+
+@mixin gradient($from, $to, $angle: 90deg) {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
+  background-image: -moz-linear-gradient(0 100% $angle, $to, $from);
+}
+
+@mixin text-shadow($color: #777) {
+  -webkit-text-shadow: 1px 1px 1px $color;
+  -moz-text-shadow: 1px 1px 1px $color;
+  -o-text-shadow: 1px 1px 1px $color;
+  text-shadow: 1px 1px 1px $color;
+}
+
+@mixin box-shadow($color: #777) {
+  -webkit-box-shadow: 1px 1px 1px $color;
+  -moz-box-shadow: 1px 1px 1px $color;
+  -o-box-shadow: 1px 1px 1px $color;
+  box-shadow: 1px 1px 1px $color;
+}
+
+@mixin transition($effect, $duration: .05s) {
+  -webkit-transition: $effect $duration ease;
+  -moz-transition: $effect $duration ease;
+  transition: $effect $duration ease;
+}
+
+@mixin list_reset {margin: 0; list-style: none; padding:0;}
+
+@mixin invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding:0 !important;
+  border:0 !important;
+  height: 1px !important; 
+  width: 1px !important; 
+  overflow: hidden;
+}
+
+@mixin hint { color:$light_grey; font-size:12px; }
