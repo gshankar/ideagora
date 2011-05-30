@@ -1,10 +1,21 @@
 %h1= @user.full_name
-- if current_user == @user
-  %p= link_to "edit my profile", edit_user_path(@user)
+
+%p= link_to("edit my profile", edit_user_path(@user)) if current_user == @user
 
 %p Email: #{@user.email}
+
+
 %p Twitter username: #{@user.twitter}
+
+%p Bonjour nick: #{@user.bonjour}
+
+%p IRC nick: #{@user.irc}
+
 %p= @user.try(:bio)
+
+%p Skills: #{@user.skill_list.join(', ')}
+
+%p Interests: #{@user.interest_list.join(', ')}
 
 - if @user.projects.any?
   %h2 My projects

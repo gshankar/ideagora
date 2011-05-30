@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
   has_many :attendances
   has_many :camps, :through => :attendances
-  
   has_many :projects, :dependent => :destroy
   
   validates_presence_of :first_name, :email
   validates_uniqueness_of :email
+
+  acts_as_taggable
+  acts_as_taggable_on :skills, :interests
   
   def full_name
     if last_name

@@ -11,3 +11,4 @@ module NavigationHelpers
 end
 
 RSpec.configuration.include NavigationHelpers, :type => :acceptance
+RSpec.configuration.include NavigationHelpers, :type => :request #for capybara rspec

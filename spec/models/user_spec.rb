@@ -8,6 +8,18 @@ describe User do
   
   it { should be_invalid }  
 
+  it 'has skills tags' do
+    user = User.make!
+    user.update_attribute(:skill_list, 'rspec, javascript')
+    user.skill_list.should include('rspec', 'javascript')
+  end
+
+  it 'has interests tags' do
+    user = User.make!
+    user.update_attribute(:interest_list, 'running, game-dev')
+    user.interest_list.should include('running', 'game-dev')
+  end
+
   context 'when new user' do
     context 'without first name, email or password' do
       subject { User.create }
@@ -40,10 +52,10 @@ describe User do
   end
   
   context 'full_name' do
-    before { @user = User.make!(:first_name => 'elmo') }
-    specify { @user.full_name.should == 'elmo' }
+    before { @user = User.make!(:first_name => 'elmo', :last_name => nil) }
     
     it "should concat first and last name" do
+      @user.full_name.should == 'elmo'
       @user.update_attribute(:last_name, 'smith')
       @user.full_name.should == 'elmo smith'
     end
