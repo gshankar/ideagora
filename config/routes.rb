@@ -9,7 +9,9 @@ Ideagora::Application.routes.draw do
   resources :projects
   resources :sessions
   resources :venues
+  resources :talks
   resources :users, :only => [:index, :show, :edit, :update]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
