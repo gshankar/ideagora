@@ -53,9 +53,9 @@ describe User do
   
   context 'full_name' do
     before { @user = User.make!(:first_name => 'elmo', :last_name => nil) }
+    specify { @user.full_name.should == 'elmo' }
     
     it "should concat first and last name" do
-      @user.full_name.should == 'elmo'
       @user.update_attribute(:last_name, 'smith')
       @user.full_name.should == 'elmo smith'
     end
