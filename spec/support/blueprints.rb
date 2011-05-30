@@ -4,6 +4,9 @@ require 'faker'
 Camp.blueprint do
   name          { 'Railscamp 9' }
   current       { true }
+  time_zone     { 'Sydney' }
+  start_at      { 1.day.ago.beginning_of_day + 16.hours }
+  end_at        { 2.days.from_now.beginning_of_day + 10.hours }
 end
 
 Camp.blueprint(:previous) do

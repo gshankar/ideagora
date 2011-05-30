@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Talk do
   it { should belong_to :user }
   it { should belong_to :venue }
+  it { should belong_to :camp }
 
   describe 'validations' do
     before do 

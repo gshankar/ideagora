@@ -1,6 +1,7 @@
 class Talk < ActiveRecord::Base
   belongs_to :user
   belongs_to :venue
+  belongs_to :camp #denormalized from venue because talks start off w/out a venue when a camp is created
 
   validates_presence_of :user_id
   validates_presence_of :venue_id
