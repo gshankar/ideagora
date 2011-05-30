@@ -102,6 +102,7 @@ GEM
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nokogiri (1.4.4)
+    pg (0.11.0)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -157,7 +158,6 @@ GEM
     shoulda (2.11.3)
     simple_form (1.4.0)
     spork (0.8.4)
-    sqlite3 (1.3.3)
     steak (1.1.0)
       rspec (>= 1.3)
     sys-uname (0.8.5)
@@ -187,6 +187,7 @@ DEPENDENCIES
   itslog
   launchy
   machinist (>= 2.0.0.beta2)
+  pg
   rails (= 3.0.6)
   rake (= 0.8.7)
   rspec-rails
@@ -194,5 +195,4 @@ DEPENDENCIES
   shoulda
   simple_form
   spork
-  sqlite3
   steak
