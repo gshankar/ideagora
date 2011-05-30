@@ -24,3 +24,11 @@ end
 Venue.blueprint do
   name          { Faker::Lorem.words(1) }
 end
+
+Talk.blueprint do
+  name     { 'Introduction to Coffeescript' }
+  venue    { Venue.make! }
+  user     { User.make! }
+  start_at { 1.day.ago }
+  end_at   { 1.day.from_now }
+end
