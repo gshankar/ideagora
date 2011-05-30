@@ -3,16 +3,16 @@ ideagora - a place to share and discover info about you and your fellow Railscam
 Done:
 - user auth by email address or twitter handle (no password)
 - a simple profile form for each user with contact info, bio, and skills/interests tagging
-
+- browse users, search / filter by anything displayed in the users index table
 
 To-Do:
-- browse users, search / filter by tags
 - styling
 - view / edit talks
 - view / edit project info for each user
 
 
 Someday Maybe:
+- input talk proposals and let people upvote the ones they'd like to hear the most
 - a bonjour chat bot could do some neat things:
   - when browsing users, could show live 'online/offline' info next to each name for users with bonjour chat names in their profile
   - broadcast talk info
