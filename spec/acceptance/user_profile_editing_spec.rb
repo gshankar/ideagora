@@ -2,8 +2,6 @@ require 'acceptance/acceptance_helper'
 
 describe 'A user viewing and editing their profile', :type => :request do
   before do
-    clear_db
-
     @c = Camp.make!
     @u = @c.users.make!
     sign_in_as(@u)
@@ -19,8 +17,8 @@ describe 'A user viewing and editing their profile', :type => :request do
         page.should have_field(attr.humanize, :with => @u.send(attr))
       end
 
-      page.should have_field('Skill list',    :with => @u.skill_list.join(', '))
-      page.should have_field('Interest list', :with => @u.interest_list.join(', '))
+      page.should have_field('Skill list',    :with => @u.skill_list.sort.join(', '))
+      page.should have_field('Interest list', :with => @u.interest_list.sort.join(', '))
     end
   end
 
@@ -36,7 +34,7 @@ describe 'A user viewing and editing their profile', :type => :request do
         :twitter => 'gabehollombenew',
         :bonjour => 'bonjournew',
         :irc => 'ircnew',
-        :skill_list => 'rspecnew, javascriptnew',
+        :skill_list => 'javascriptnew, rspecnew',
         :interest_list => 'divingnew, game-devnew'
       }
 

@@ -17,8 +17,9 @@
   = f.input :twitter
   = f.input :bonjour
   = f.input :irc
-  = f.input :skill_list
-  = f.input :interest_list
+  = f.input :skill_list, :input_html => { :value => @user.skill_list.sort }
+  = f.input :interest_list, :input_html => { :value => @user.interest_list.sort }
+
   %p.submits
     = link_to 'Cancel', @user, :class => 'cancel'
     or
