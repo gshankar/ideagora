@@ -3,6 +3,6 @@
 %ul
   - @projects.each do |project|
     %li
-      = link_to project.name, project
+      = link_to project.name, user_project_path(project.owner, project)
       by
       = link_to project.owner.full_name, user_path(project.owner)

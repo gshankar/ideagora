@@ -4,13 +4,15 @@ Ideagora::Application.routes.draw do
   get "sign_in" => "sessions#new", :as => "sign_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "my_profile" => "users#edit", :as => "my_profile"
-
+  get "projects" => "projects#index", :as => "projects"
+  
   resources :camps
-  resources :projects
   resources :sessions
   resources :venues
   resources :talks
-  resources :users, :only => [:index, :show, :edit, :update]
+  resources :users, :only => [:index, :show, :edit, :update] do
+    resources :projects
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

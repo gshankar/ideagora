@@ -17,11 +17,17 @@
 
 %p Interests: #{@user.interest_list.join(', ')}
 
+%h2 My projects
+%p= link_to 'Add new project', new_user_project_path(@user)
+  
 - if @user.projects.any?
-  %h2 My projects
   %ol
     - for project in @user.projects
       %li
-        %h3= link_to project.name, project_path(project)
+        %h3= link_to project.name, user_project_path(@user, project)
         %p= truncate(project.try(:description))
-      
+- else
+  %p
+    Tell us what you are working on&#8212;
+    = link_to 'create a new project', new_user_project_path(@user)
+    
