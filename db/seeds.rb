@@ -13,7 +13,7 @@ CSV.foreach(filename, :headers => true) do |row|
                   :last_name => row['last_name'],
                   :email => row['email'],
                   :twitter => row['twitter'],
-                  :camp => Camp.first
+                  :camps => [Camp.first]
                   )
   puts "created #{u.first_name} #{u.last_name}"
 end
