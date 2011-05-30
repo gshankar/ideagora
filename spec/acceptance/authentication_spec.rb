@@ -39,7 +39,6 @@ feature "Authentication", %q{
   
   scenario "not logged in, trying to access @u profile page" do
     visit my_profile_path
-    current_path.should == root_path
-    page.should have_content('Unauthorised!')
+    assert_unauthorised
   end
 end
