@@ -10,7 +10,6 @@ feature "Authentication", %q{
     @c = Camp.make!
     @u = @c.users.make
     @u.update_attribute(:twitter, @u.first_name)
-    @u.save
     visit sign_in
     page.should have_content('Sign in')
   end
@@ -27,7 +26,7 @@ feature "Authentication", %q{
     page.should have_content('Logged in!')
   end
   
-  scenario "non-current railscamp peep" do
+  scenario "peep from a previous camp" do
     pending
   end
   
@@ -36,5 +35,11 @@ feature "Authentication", %q{
     fill_in 'details', :with => other.email
     click_button 'Let me in'
     page.should have_content('Cannot log you in.')
+  end
+  
+  scenario "not logged in, trying to access @u profile page" do
+    visit my_profile_path
+    current_path.should == root_path
+    page.should have_content('Unauthorised!')
   end
 end
