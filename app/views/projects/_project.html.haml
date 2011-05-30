@@ -1,0 +1,7 @@
+%li
+  %h3= link_to project.name, user_project_path(project.owner, project)
+  - # TODO: hide this when /users/:user_id
+  %p
+    by
+    = link_to project.owner.full_name, user_path(project.owner)
+  %p= truncate(project.try(:description))
