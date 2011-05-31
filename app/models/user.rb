@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :attendances
   has_many :camps, :through => :attendances
   has_many :projects, :dependent => :destroy
+  has_many :notices
   
   validates_presence_of :first_name, :email
   validates_uniqueness_of :email

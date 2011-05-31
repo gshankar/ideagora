@@ -11,9 +11,25 @@ Camp.blueprint(:previous) do
   current       { false }
 end
 
+
+Notice.blueprint do
+  title         { Faker::Name.name }
+  content       { Faker::Lorem.sentences }
+  user          { User.make! }
+  camp          { Camp.make! }
+end
+
 Project.blueprint do
   name          { Faker::Lorem.words(1) }
   owner         { User.make! }
+end
+
+Talk.blueprint do
+  name     { 'Introduction to Coffeescript' }
+  venue    { Venue.make! }
+  user     { User.make! }
+  start_at { 1.day.ago }
+  end_at   { 1.day.from_now }
 end
 
 User.blueprint do
@@ -28,12 +44,4 @@ end
 
 Venue.blueprint do
   name          { Faker::Lorem.words(1) }
-end
-
-Talk.blueprint do
-  name     { 'Introduction to Coffeescript' }
-  venue    { Venue.make! }
-  user     { User.make! }
-  start_at { 1.day.ago }
-  end_at   { 1.day.from_now }
 end
