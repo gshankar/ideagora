@@ -80,19 +80,32 @@ describe 'User\'s projects', :type => :request do
         page.should have_content('You cannot edit projects that are not yours')
       end
       
-      it "can edit own projects" do
-        pending
-        visit user_path(@u)
+      it "when on other camper's page, should not see edit or delete links" do
+        @other = User.make!
+        @other_project = Project.make!(:owner => @other)
+        visit user_path(@other)
         
+        find('.projects').should_not have_content('Edit')
+        find('.projects').should_not have_content('Delete')
+      end
+      
+      it "can edit own projects" do
+        visit user_path(@u)
+        page.should have_content('My projects')
+        find("li#project_#{@p.id}").click_link('Edit')
+        
+        fill_in 'Name', :with => 'new name'
+        page.click_button 'Update Project'
+        
+        current_path.should == user_path(@u)
+        @u.projects.count == 0
       end
       
       it "can delete own project" do
-        pending
         visit user_path(@u)
+        find("li#project_#{@p.id}").click_link('Delete')
+        @u.projects.count == 0
       end
     end
-    
-    
   end
-
 end

@@ -2,10 +2,15 @@ class ProjectsController < InheritedResources::Base
   before_filter :requires_login, :except => [:index, :show]
   before_filter :requires_owner, :except => [:index, :show, :new, :create]
   
+  
   def create
     @project = Project.new(params[:project])
     @project.owner = current_user
     create! { user_path(current_user) }
+  end
+  
+  def update
+    update! { user_path(current_user) }
   end
   
 private
