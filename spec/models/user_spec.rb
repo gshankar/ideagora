@@ -61,4 +61,19 @@ describe User do
       @user.full_name.should == 'elmo smith'
     end
   end
+  
+  context 'organiser' do
+    before do
+      @a = Attendance.make!
+      @u = @a.user
+    end
+    
+    specify { @u.organiser?.should be_false }
+    
+    it "should be organiser?" do
+      @a.update_attribute(:organiser, true)
+      @u.reload
+      @u.organiser?.should be_true
+    end
+  end
 end

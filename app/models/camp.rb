@@ -4,5 +4,8 @@ class Camp < ActiveRecord::Base
   has_many :users, :through => :attendees
   has_many :notices
   
+  def current?
+    !! current
+  end
   # TODO if one camp is enabled, all others should be disabled
 end

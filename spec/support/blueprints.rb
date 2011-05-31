@@ -1,6 +1,12 @@
 require 'machinist/active_record'
 require 'faker'
 
+Attendance.blueprint do
+  user          { User.make! }
+  camp          { Camp.make! }
+  organiser     { false }
+end
+
 Camp.blueprint do
   name          { 'Railscamp 9' }
   current       { true }
