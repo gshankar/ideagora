@@ -17,3 +17,17 @@ CSV.foreach(filename, :headers => true) do |row|
                   )
   puts "created #{u.first_name} #{u.last_name}"
 end
+
+
+%w(ben@hoskings.net
+ellemeredith@gmail.com
+gabe@avantbard.com
+jason@codespike.com
+jason.stirk@rubyx.com
+kpitty@cockatoosoftware.com.au
+scottandrewharvey@gmail.com
+tim@mcewan.it
+zubin@wickedweasel.com).each do |email|
+  puts "Setting #{email} as organiser"
+  User.find_by_email!(email).attendances.first.update_attribute(:organiser, true)
+end

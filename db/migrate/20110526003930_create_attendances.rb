@@ -3,6 +3,7 @@ class CreateAttendances < ActiveRecord::Migration
     create_table :attendances do |t|
       t.integer :camp_id
       t.integer :user_id
+      t.boolean :organiser, :default => false
 
       t.timestamps
     end

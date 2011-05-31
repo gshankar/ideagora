@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20110531110214) do
   create_table "attendances", :force => true do |t|
     t.integer  "camp_id"
     t.integer  "user_id"
+    t.boolean  "organiser",  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
