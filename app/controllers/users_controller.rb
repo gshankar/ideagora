@@ -1,6 +1,6 @@
 class UsersController < InheritedResources::Base
   actions :index, :show, :update
-  before_filter :requires_login
+  before_filter :requires_login, :except => [:index, :show]
 
   def edit
     @user = current_user
