@@ -12,9 +12,6 @@ gem 'rake', '0.8.7'
 gem 'simple_form'
 gem 'ruby-debug19'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
 group :development, :test do
   gem 'autotest'
   gem 'autotest-growl'
@@ -31,4 +28,5 @@ group :development, :test do
   gem 'spork'
   gem 'steak'
   gem 'fuubar'
+  gem 'timecop'
 end
