@@ -1,10 +1,12 @@
 %li[project]
   %h3= link_to project.name, user_project_path(project.owner, project)
-  - # TODO: hide this when /users/:user_id
-  %p
-    by
-    = link_to project.owner.full_name, user_path(project.owner)
+  - if current_user and project.owner != current_user
+    %p
+      by
+      = link_to project.owner.full_name, user_path(project.owner)
   %p= truncate(project.try(:description))
+  - if project.help
+    %p.help Could use help with this one
   - if project.owner == current_user
     %p
       = link_to 'Edit', edit_user_project_path(project.owner, project)
