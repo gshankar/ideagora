@@ -25,4 +25,28 @@ describe Camp do
     c.talks.where('start_at < ?', c.start_at.end_of_day).count.should == 0
     c.talks.where('start_at > ?', c.end_at.beginning_of_day).count.should == 0
   end
+
+  describe '#talks_by_day' do
+    let!(:camp) { Camp.make! }
+    let!(:venue) { camp.venues.make! }
+    let!(:user) { camp.users.make! }
+    let!(:day_1_talk_1) { camp.talks.first }
+    let!(:day_1_talk_2) { camp.talks.second }
+    let!(:day_2_talk_1) { camp.talks.last }
+    let!(:tbd) { camp.talks_by_day }
+
+    it 'returns an OrderedHash of talks keyed by day' do
+      tbd.should be_kind_of(ActiveSupport::OrderedHash)
+
+      #SOMEDAY: test the order of the keys in this hash
+
+      tbd[day_1_talk_1.start_at.to_date].should include(day_1_talk_1, day_1_talk_2)
+      tbd[day_1_talk_1.start_at.to_date].should_not include(day_2_talk_1)
+
+      tbd[day_2_talk_1.start_at.to_date].should include(day_2_talk_1)
+      tbd[day_2_talk_1.start_at.to_date].should_not include(day_1_talk_1, day_1_talk_2)
+    end
+
+    #SOMEDAY: test the order of the values in this hash
+  end
 end

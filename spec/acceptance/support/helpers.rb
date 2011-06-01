@@ -2,7 +2,7 @@ module HelperMethods
   # Put helper methods you need to be available in all tests here.
   def sign_in_as(user)
     visit sign_in_path
-    fill_in 'details', :with => @u.email
+    fill_in 'details', :with => user.email
     click_button 'Let me in'
   end
 

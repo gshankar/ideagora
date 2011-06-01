@@ -1,5 +1,6 @@
 module TalksHelper
   def casual_day_description(time)
+    time = time.to_time if time.class == Date
     time_diff = time - Time.now
     if time_diff < 0 
       case time_diff.abs

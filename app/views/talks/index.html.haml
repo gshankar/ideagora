@@ -1,2 +1,4 @@
 %h2 The Talks
 
+- @talks_by_day.each do |day, talks|
+  = render :partial => 'day', :locals => { :day => day, :talks => talks }

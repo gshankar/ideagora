@@ -2,9 +2,21 @@ require 'acceptance/acceptance_helper'
 
 describe 'users CRUDing talks', :type => :request do
   before do
-    @c = Camp.make!
-    @u = @c.users.make!
-    sign_in_as(@u)
+    @camp = Camp.current || Camp.make!
+    @user = @camp.users.make!
+    sign_in_as(@user)
+  end
+
+  it 'lets users view the talks' do
+    venue = @camp.venues.make!
+    @camp.talks.first.update_attributes(:name => 'Sample Talk', :venue => venue, :user => @user)
+
+    visit talks_path
+
+    # Do we see the details for each talk?
+    @camp.talks.each do |talk|
+      page.should have_content talk.name
+    end
   end
 
   it 'lets a user create a new talk' do

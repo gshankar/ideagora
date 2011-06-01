@@ -12,8 +12,8 @@
     - talks.each_with_index do |talk, index|
       - row_class = index.even? ? 'even' : 'odd'
       %tr{:class => row_class}
-        %td= talk.name
+        %td= talk.try(:name)
         %td= talk.start_at
         %td= talk.end_at
-        %td= talk.venue.name
-        %td= talk.user.name
+        %td= talk.try(:venue).try(:name)
+        %td= talk.try(:user).try(:full_name)

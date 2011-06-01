@@ -10,6 +10,21 @@ class Camp < ActiveRecord::Base
   after_create :create_talks_for_full_days_of_camp
   
   # TODO if one camp is enabled, all others should be disabled
+  
+  def self.current
+    where(:current => true).take(1).first
+  end
+  
+  def talks_by_day
+    #OPTIMIZE: this is ghetto and could be done nicer in sql instead of ruby, but this is quick and dirty for now
+    tbd = ActiveSupport::OrderedHash.new
+    
+    talks.collect{|t| t.start_at.to_date}.uniq.sort.each do |date|
+      tbd[date] = talks.where('start_at >= ? and start_at < ?', date, date + 1.day).order(:start_at)
+    end
+
+    return tbd
+  end
 
   private
 
