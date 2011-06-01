@@ -4,6 +4,7 @@ class CreateTalks < ActiveRecord::Migration
       t.integer :venue_id
       t.integer :user_id
       t.string :name
+      t.text :description
       t.datetime :start_at
       t.datetime :end_at
 
