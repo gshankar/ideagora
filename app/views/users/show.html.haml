@@ -11,7 +11,8 @@
 
 %p IRC nick: #{@user.irc}
 
-%p= @user.try(:bio)
+- if @user.bio
+  %p= textilize(@user.bio)
 
 %p Skills: #{@user.skill_list.join(', ')}
 

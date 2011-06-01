@@ -1,6 +1,6 @@
 - simple_form_for([current_user, @project]) do |f|
   = f.input :name
-  = f.input :description
+  = f.input :description, :hint => 'Textile supported'
   = f.input :help, :label => 'Need help?'
   
   = f.button :submit

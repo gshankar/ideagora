@@ -10,6 +10,7 @@ gem 'hirb'
 gem 'inherited_resources'
 gem 'rake', '0.8.7'
 gem 'simple_form'
+gem 'RedCloth'
 gem 'ruby-debug19'
 
 # Use unicorn as the web server

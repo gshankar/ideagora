@@ -14,6 +14,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.7)
     ZenTest (4.5.0)
     abstract (1.0.0)
     actionmailer (3.0.6)
@@ -172,6 +173,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   acts-as-taggable-on
   autotest
   autotest-fsevent
