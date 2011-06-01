@@ -28,6 +28,12 @@
             - else
               = link_to "Sign in", sign_in_path
         %h1 Railscamp 9
+      %nav#main_nav
+        %ul
+          %li= link_to 'Welcome', root_path
+          %li= link_to 'Campers', users_path
+          %li= link_to 'Projects', projects_path
+          %li= link_to 'Talks', talks_path
       #content
         = flash_helper.html_safe
         = yield
