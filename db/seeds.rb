@@ -25,16 +25,21 @@ puts "Done with users."
 #fake some talks
 venues = rc9.venues
 users = rc9.users
-rc9.talks.each_with_index do |talk, index|
-  next if index % 4 == 0 #skip some talk slots
+rc9.talk_days.each do |day|
+  rc9.talk_hours.each do |hour|
+    next if hour % 3 == 0 #skip some talk slots
 
-  venue = venues[index % venues.length]
-  speaker = users[index % users.length]
+    venue = venues[hour % venues.length]
+    speaker = users[hour % users.length]
 
-  talk.update_attributes(
-    :venue_id => venue.id,
-    :user_id => speaker.id,
-    :name => "Fake Talk #{index}"
-  )
-  puts "Updated talk #{talk.name}"
+    start_at = day + hour.hours
+    talk = rc9.talks.create!(
+      :venue_id => venue.id,
+      :user_id => speaker.id,
+      :name => Faker::Company.catch_phrase,
+      :start_at => start_at,
+      :end_at => start_at + 1.hour
+    )
+    puts "Created talk #{talk.name}"
+  end
 end

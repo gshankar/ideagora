@@ -8,30 +8,35 @@ describe 'users CRUDing talks', :type => :request do
   end
 
   it 'lets users view the talks' do
-    venue = @camp.venues.make!
-    @camp.talks.first.update_attributes(:name => 'Sample Talk', :venue => venue, :user => @user)
+    venue = Venue.make!(:camp => @camp)
+    talk = @camp.talks.order(:start_at).first
+    talk.update_attributes(:name => 'Sample Talk', :venue => venue, :user => @user)
 
-    visit talks_path
+    viewing_day = @camp.talks.order(:start_at).first.day
+    visit talks_path(:day => viewing_day)
 
-    # Do we see the details for each talk?
-    @camp.talks.each do |talk|
+    # Do we see the details for each talk on this day?
+    @camp.talks.for_day(viewing_day).each do |talk|
       page.should have_content talk.name
+    end
+
+    #We should have links for the other talk days
+    @camp.talks.collect(&:day).uniq.each do |day|
+      page.should have_link day.strftime("%A") unless day == viewing_day
     end
   end
 
   it 'lets a user create a new talk' do
-    pending
     attrs = {
       :name => 'Intro to coffeescript',
       :start_at => 1.day.from_now.beginning_of_day + 8.hours,
       :end_at => 1.day.from_now.beginning_of_day + 9.hours
     }
 
-    visit new_talk_path
+    visit talks_path
+    click_link 'Add Talk'
 
     fill_in :name, :with => attrs[:name]
-    fill_in :start_at, :with => attrs[:start_at].to_s
-    fill_in :end_at, :with => attrs[:end_at].to_s
 
     click_button 'Create Talk'
 

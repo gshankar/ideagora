@@ -1,6 +1,9 @@
+= render :partial => 'where_and_when', :locals => { :talk => @talk }
+
 = simple_form_for @talk do |f|
   = f.input :name
-  = f.input :start_at
-  = f.input :end_at
-  
   = f.button :submit
+
+  = f.input :start_at, :as => :hidden
+  = f.input :end_at, :as => :hidden
+  = f.input :venue_id, :as => :hidden

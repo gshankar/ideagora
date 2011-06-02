@@ -9,6 +9,14 @@ class Talk < ActiveRecord::Base
   validates_presence_of :end_at
   validate :start_at_is_less_than_end_at
 
+  def self.for_day(day)
+    where('start_at >= ? and start_at < ?', day, day + 1.day).order(:start_at)
+  end
+
+  def day
+    start_at.to_date
+  end
+
   private
 
   def start_at_is_less_than_end_at

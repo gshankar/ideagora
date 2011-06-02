@@ -16,4 +16,12 @@ module TalksHelper
       end
     end
   end
+
+  def talk_description(talk)
+    html = <<-END
+      #{talk.try(:name)} <br/>
+      #{talk.try(:user).try(:full_name)}
+    END
+    html.html_safe
+  end
 end

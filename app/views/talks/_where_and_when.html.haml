@@ -1,0 +1,4 @@
+%p
+  == Venue: #{talk.venue.name}
+%p
+  == #{casual_day_description(talk.start_at.to_date)} from #{talk.start_at.strftime("%H:%M")} to #{talk.end_at.strftime("%H:%M")}
