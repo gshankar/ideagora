@@ -4,10 +4,10 @@ Done:
 - user auth by email address or twitter handle (no password)
 - a simple profile form for each user with contact info, bio, and skills/interests tagging
 - browse users, search / filter by anything displayed in the users index table
+- view / edit talks
 
 To-Do:
 - styling
-- view / edit talks
 - view / edit project info for each user
 
 
