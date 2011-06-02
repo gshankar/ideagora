@@ -11,42 +11,17 @@ describe Camp do
   it { should have_many(:venues) }
   it { should have_many(:talks) }
 
-  describe '#talks_by_day' do
-    let!(:camp) { Camp.make! }
-    let!(:venue) { camp.venues.make! }
-    let!(:user) { camp.users.make! }
-    let!(:day_1_talk_1) { camp.talks.first }
-    let!(:day_1_talk_2) { camp.talks.second }
-    let!(:day_2_talk_1) { camp.talks.last }
-    let!(:tbd) { camp.talks_by_day }
-
-    it 'returns an OrderedHash of talks keyed by day' do
-      tbd.should be_kind_of(ActiveSupport::OrderedHash)
-
-      #SOMEDAY: test the order of the keys in this hash
-
-      tbd[day_1_talk_1.start_at.to_date].should include(day_1_talk_1, day_1_talk_2)
-      tbd[day_1_talk_1.start_at.to_date].should_not include(day_2_talk_1)
-
-      tbd[day_2_talk_1.start_at.to_date].should include(day_2_talk_1)
-      tbd[day_2_talk_1.start_at.to_date].should_not include(day_1_talk_1, day_1_talk_2)
-    end
-
-    #SOMEDAY: test the order of the values in this hash
-  end
-
   describe '#talks_by_time_and_venue_for_day(day)' do
-    let!(:camp) { Camp.make! }
-    let!(:venue) { camp.venues.make! }
-    let!(:user) { camp.users.make! }
-
     before do
-      #Create talks with venues for each talk slot at the camp
-      camp.talks.each {|t| t.update_attributes(:venue => venue, :user => user, :name => 'Fake talk')}
+      @camp = Camp.make!
+      venue = Venue.make!(:camp => @camp)
+      user = User.make! #Why won't @camp.users.make! work? I wish I knew Machinist2...
+      @camp.users << user
+      talk = venue.talks.create(:name => 'Sample Talk', :venue => venue, :user => user, :start_at => @camp.start_at.to_date + 1.day + 10.hours, :end_at => @camp.start_at.to_date + 1.day + 11.hours)
     end
 
     it 'returns an OrderedHash in the form of { :time => { :venue => :talk } }' do
-      talks = camp.talks_by_time_and_venue_for_day(camp.start_at.to_date + 1.days)
+      talks = @camp.talks_by_time_and_venue_for_day(@camp.start_at.to_date + 1.days)
 
       talks.should be_a_kind_of ActiveSupport::OrderedHash
       talks.keys.first.should be_a_kind_of Time

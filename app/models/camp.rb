@@ -14,6 +14,7 @@ class Camp < ActiveRecord::Base
   end
 
   def talks_by_day
+    #TODO test me
     #OPTIMIZE: this is ghetto and could be done nicer in sql instead of ruby, but this is quick and dirty for now
     tbd = ActiveSupport::OrderedHash.new
 
@@ -25,6 +26,7 @@ class Camp < ActiveRecord::Base
   end
 
   def talks_by_time_and_venue_for_day(day)
+    #TODO test me
     #We want to return an ordered hash like { :time => { :venue => :talk } }
     talks_by_time = ActiveSupport::OrderedHash.new
 
@@ -51,6 +53,7 @@ class Camp < ActiveRecord::Base
   end
 
   def talk_days
+    #TODO test me
     first_talk_day = start_at.tomorrow.beginning_of_day
     last_talk_day = end_at.yesterday.beginning_of_day
     number_of_days_with_talks = ((last_talk_day.end_of_day - first_talk_day).seconds / 1.day).to_i

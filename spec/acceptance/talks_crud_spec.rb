@@ -9,8 +9,7 @@ describe 'users CRUDing talks', :type => :request do
 
   it 'lets users view the talks' do
     venue = Venue.make!(:camp => @camp)
-    talk = @camp.talks.order(:start_at).first
-    talk.update_attributes(:name => 'Sample Talk', :venue => venue, :user => @user)
+    talk = venue.talks.create(:name => 'Sample Talk', :venue => venue, :user => @user, :start_at => @camp.start_at.to_date + 1.day + 10.hours, :end_at => @camp.start_at.to_date + 1.day + 11.hours)
 
     viewing_day = @camp.talks.order(:start_at).first.day
     visit talks_path(:day => viewing_day)
@@ -27,25 +26,17 @@ describe 'users CRUDing talks', :type => :request do
   end
 
   it 'lets a user create a new talk' do
-    attrs = {
-      :name => 'Intro to coffeescript',
-      :start_at => 1.day.from_now.beginning_of_day + 8.hours,
-      :end_at => 1.day.from_now.beginning_of_day + 9.hours
-    }
-
-    visit talks_path
+    visit talks_path(:day => @camp.start_at.to_date + 1.day)
     click_link 'Add Talk'
 
-    fill_in :name, :with => attrs[:name]
+    fill_in :name, :with => 'New Title'
 
     click_button 'Create Talk'
 
     #saved flash?
-    page.should have_content 'This talk has been saved.'
+    page.should have_content 'Talk was successfully created.'
 
     #new values saved?
-    attrs.each do |attr, value|
-      page.should have_field(attr.to_s.humanize, :with => value)
-    end
+    page.should have_content 'New Title'
   end
 end
