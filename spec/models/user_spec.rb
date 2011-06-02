@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'ruby-debug'
 
 describe User do
   it { should validate_presence_of(:first_name) }
@@ -64,16 +65,23 @@ describe User do
   
   context 'organiser' do
     before do
-      @a = Attendance.make!
-      @u = @a.user
+      Camp.delete_all
+      Attendance.delete_all
+      User.delete_all
     end
     
-    specify { @u.organiser?.should be_false }
-    
     it "should be organiser?" do
-      @a.update_attribute(:organiser, true)
-      @u.reload
-      @u.organiser?.should be_true
+      pending
+      a = Attendance.make!
+      u = a.user
+      User.organisers.count == 0
+      u.organiser?.should be_false
+      
+      a.update_attribute(:organiser, true)
+      User.organisers(true).count == 1
+      puts User.organisers(true)
+      puts User.first.organiser?
+      u.organiser?.should be_true
     end
   end
 end

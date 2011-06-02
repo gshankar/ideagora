@@ -7,5 +7,10 @@ class Camp < ActiveRecord::Base
   def current?
     !! current
   end
+  
+  def self.current
+    where(:current => true).first
+  end
+  
   # TODO if one camp is enabled, all others should be disabled
 end
