@@ -49,4 +49,28 @@ describe Camp do
 
     #SOMEDAY: test the order of the values in this hash
   end
+
+  describe '#talks_by_time_and_venue_for_day(day)' do
+    let!(:camp) { Camp.make! }
+    let!(:venue) { camp.venues.make! }
+    let!(:user) { camp.users.make! }
+
+    before do
+      #Create talks with venues for each talk slot at the camp
+      camp.talks.each {|t| t.update_attributes(:venue => venue, :user => user, :name => 'Fake talk')}
+    end
+
+    it 'returns an OrderedHash in the form of { :time => { :venue => :talk } }' do
+      talks = camp.talks_by_time_and_venue_for_day(camp.start_at.to_date + 1.days)
+
+      talks.should be_a_kind_of ActiveSupport::OrderedHash
+      talks.keys.first.should be_a_kind_of Time
+
+      talks_for_time = talks[talks.keys.first]
+      talks_for_time.keys.first.should be_a_kind_of Venue
+
+      talk = talks_for_time[talks_for_time.keys.first]
+      talk.should be_a_kind_of Talk
+    end
+  end
 end

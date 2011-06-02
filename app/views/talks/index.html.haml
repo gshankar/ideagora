@@ -1,4 +1,21 @@
-%h2 The Talks
+%h2== Talks for #{casual_day_description(@day)}
+%h2== #{@day}
 
-- @talks_by_day.each do |day, talks|
-  = render :partial => 'day', :locals => { :day => day, :talks => talks }
+
+%table.talks
+  %thead
+    %tr
+      %th Time
+      -  @venues.each do |venue|
+        %th= venue.name
+  %tbody
+    - @talks_by_time_and_venue_for_day.each_with_index do |keyval, index|
+      - time, talks_by_venue = keyval
+      %tr{:class => index.even? ? 'even' : 'odd'}
+        %td
+          = time.strftime "%H:%M"
+          - @venues.each do |venue|
+            %td
+              - talk = talks_by_venue[venue]
+              - next unless talk
+              = talk_description(talk)

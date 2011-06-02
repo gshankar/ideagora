@@ -8,13 +8,15 @@ describe 'users CRUDing talks', :type => :request do
   end
 
   it 'lets users view the talks' do
-    venue = @camp.venues.make!
-    @camp.talks.first.update_attributes(:name => 'Sample Talk', :venue => venue, :user => @user)
+    venue = Venue.make!(:camp => @camp)
+    talk = @camp.talks.order(:start_at).first
+    talk.update_attributes(:name => 'Sample Talk', :venue => venue, :user => @user)
 
-    visit talks_path
+    day = @camp.talks.order(:start_at).first.day
+    visit talks_path(:day => day)
 
-    # Do we see the details for each talk?
-    @camp.talks.each do |talk|
+    # Do we see the details for each talk on this day?
+    @camp.talks.for_day(day).each do |talk|
       page.should have_content talk.name
     end
   end

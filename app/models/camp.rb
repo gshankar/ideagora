@@ -14,16 +14,37 @@ class Camp < ActiveRecord::Base
   def self.current
     where(:current => true).take(1).first
   end
-  
+
   def talks_by_day
     #OPTIMIZE: this is ghetto and could be done nicer in sql instead of ruby, but this is quick and dirty for now
     tbd = ActiveSupport::OrderedHash.new
-    
+
     talks.collect{|t| t.start_at.to_date}.uniq.sort.each do |date|
       tbd[date] = talks.where('start_at >= ? and start_at < ?', date, date + 1.day).order(:start_at)
     end
 
     return tbd
+  end
+
+  def talks_by_time_and_venue_for_day(day)
+    #We want to return an ordered hash like { :time => { :venue => :talk } }
+    talks_by_time = ActiveSupport::OrderedHash.new
+
+    talks_for_day = talks.for_day(day)
+    times = talks_for_day.collect(&:start_at).uniq
+    venues = talks_for_day.collect(&:venue).uniq
+
+    #Key up all the times
+    times.each do |time|
+      talks_by_time[time] = ActiveSupport::OrderedHash.new
+    end
+
+    #Slot the talks by time, by venue
+    talks_for_day.each do |talk|
+      talks_by_time[talk.start_at][talk.venue] = talk
+    end
+
+    return talks_by_time
   end
 
   private
