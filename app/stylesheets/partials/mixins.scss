@@ -42,6 +42,12 @@ $outer_width: $column + $gutter;
   transition: $effect $duration ease;
 }
 
+@mixin transform($degree: 2deg) {
+  -webkit-transform: rotate($degree);
+  -moz-transform: rotate($degree);
+  transform: rotate($degree);
+}
+
 @mixin list_reset {margin: 0; list-style: none; padding:0;}
 
 @mixin invisible {

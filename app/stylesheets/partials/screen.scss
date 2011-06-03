@@ -1,24 +1,23 @@
 /* -----------------------------------------------------------------------
 colours, backgrounds, borders, text-shaddows, box-shaddows, gradients.....
 ----------------------------------------------------------------------- */
-
-body {color:$dark_grey; background: #fefefe;}
-h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a, h5, h5 a, h6, h6 a {color:$dark_green;}
-h3 {color: $dark_grey;}
+body {color: $dark_grey; background: #fefefe;}
+h1,h1 a {color: $dark_green; text-shadow: 1px 1px #bbb;}
+h2,h2 a,h3,h3 a,h4,h4 a,h5,h5 a,h6,h6 a {color: #555;}
 
 // = links
-a {color:$med_grey;}
-a:focus, a:hover {color:$med_green;}
+a {color: $default;}
+a:focus,a:hover {color: #ae1515;}
 
 // = tables
 th {@include gradient(#fbfbfb, $feint_grey); text-align:left; border-bottom:1px solid #fff;}
 tbody tr:nth-child(even) td, tbody tr.even td {background: #f7f7f7;}
 
-// = misc elements
-abbr, acronym {border-bottom:1px dotted $default;}
-caption {background:$feint_grey;}
+// = misc
+abbr,acronym {border-bottom: 1px dotted $default;}
+caption {background: #dedede;}
 
-// = flashes [:error, :warning, :notice, :message, :alert]
+/* flashes */
 .error, .warning, .notice, .message, .alert {border:2px solid #ddd;}
 .error, .warning, .alert {background:#fbe3e4; color:#8a1f11; border-color:#fbc2c4;
   a {color:#8a1f11;}
@@ -29,3 +28,22 @@ caption {background:$feint_grey;}
 .message {background:#e6efc2; color:#264409; border-color:#c6d880;
    a {color:#264409;}
 }
+
+
+
+body {background: url(/images/design/bkg.jpg); border-top: 2px solid #ccc;}
+
+#header h1 {color: #ae1515;}
+
+#main_nav li {background: #ccc;}
+#main_nav li a {color: #fafafa; text-shadow: 1px 1px #aaa;}
+
+
+// = home page
+section.notices {background: #fff url(/images/design/ribbon.png) 95% -2% no-repeat; box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;}
+.drop-shadow:before,.drop-shadow:after {box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);}
+
+div.main li {border-bottom: 1px dotted #ccc;}
+div.main p.details {color: #aaa;}
+div.main p.view_all a { color: #eee; text-shadow: 0 0 #777; background: #444; border-radius: 6px;}
+

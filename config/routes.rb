@@ -7,9 +7,10 @@ Ideagora::Application.routes.draw do
   get "projects" => "projects#index", :as => "projects"
   
   resources :camps
+  resources :notices
   resources :sessions
-  resources :venues
   resources :talks
+  resources :venues
   resources :users, :only => [:index, :show, :edit, :update] do
     resources :projects
   end

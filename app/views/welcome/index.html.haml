@@ -1,2 +1,41 @@
-%h1 Welcome#index
-%p Find me in app/views/welcome/index.html.haml
+%section.notices.drop-shadow
+  %h1= link_to 'Message board', notices_path, :title => 'view all notices'
+  %p.view_all= link_to 'view all messages', notices_path
+
+  %h2 Welcome to Lake Ainsworth Camp
+  %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+.main
+  %section.talks
+    %p.view_all= link_to 'view all talks', talks_path
+    %h1= link_to "Today's talks", talks_path, :title => 'view all talks'
+    %ol
+      %li.location
+        %h2 Location: Library
+        %ul
+          %li.talk
+            %p
+              %span.talk_name Coffeescript
+              at
+              %span.time 10am&#8211;11am
+              by
+              %span.presenter John Smith
+          %li.talk
+            %p
+              %span.talk_name Haml and Sass
+              at
+              %span.time 11am&#8211;12pm
+              by
+              %span.presenter John Smith
+            
+  %section.projects
+    %p.view_all= link_to 'view all projects', projects_path
+    %h1= link_to 'Random projects', projects_path, :title => 'view all projects'
+    %ol
+      %li.project#project_1
+        %h3= link_to 'happy campers', '#'
+        %p
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ut aliquip ex ea commodo consequat
+          = link_to 'more&#8230;', '#', :class => 'more'
+        %p.help Could use help with this one
