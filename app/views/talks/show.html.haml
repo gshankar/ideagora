@@ -7,3 +7,4 @@
   == #{casual_day_description(@talk.start_at.to_date)} from #{@talk.start_at.strftime("%H:%M")} to #{@talk.end_at.strftime("%H:%M")}
 
 =link_to "Edit this talk", edit_talk_path(@talk)
+=link_to "Delete this talk", talk_path(@talk), :method => :delete, :confirm => 'Really delete this talk?'
