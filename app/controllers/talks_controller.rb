@@ -10,11 +10,17 @@ class TalksController < InheritedResources::Base
   end
 
   def new
+    @users = Camp.current.users.order(:first_name)
     @start_at = Time.parse(params[:start_at])
     @end_at = @start_at + 1.hour
     @venue = Venue.find(params[:venue_id])
-    @talk = Talk.new(:start_at => @start_at, :end_at => @end_at, :venue => @venue)
+    @talk = Talk.new(:start_at => @start_at, :end_at => @end_at, :venue => @venue, :user => current_user)
     new!
+  end
+
+  def edit
+    @users = Camp.current.users.order(:first_name)
+    edit!
   end
 
   def create
