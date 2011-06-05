@@ -12,7 +12,19 @@ To-Do:
 
 
 Someday Maybe:
-- input talk proposals and let people upvote the ones they'd like to hear the most
+- collect audio/video/notes taken from talks and expose for viewing by others later (at camp or post-camp)
+
+- gravatar integration
+
+- profile picture (not gravatar) with paperclip or carrierwave
+
+- mobile interface
+
+- input talk proposals or requests for talks and let people upvote the ones they'd like to hear the most
+  - notify users who upvoted if proposal or wanted-talk becomes a talk
+
 - a bonjour chat bot could do some neat things:
   - when browsing users, could show live 'online/offline' info next to each name for users with bonjour chat names in their profile
   - broadcast talk info
+
+- tag projects with keywords that map to skills and interests from users so we can show people projects that match their skills/interests
