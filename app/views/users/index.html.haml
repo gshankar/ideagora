@@ -17,6 +17,7 @@
 %table.users
   %thead
     %tr
+      %th
       %th Name
       %th Bonjour
       %th Twitter
@@ -29,6 +30,8 @@
     - @users.each_with_index do |user, index|
       - row_class = index.even? ? 'even' : 'odd'
       %tr{:class => row_class}
+        %td
+          %img.profile_pic{:src => get_gravatar(user, 80)}
         %td= user.full_name
         %td= user.bonjour
         %td= user.twitter
